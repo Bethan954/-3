@@ -1,12 +1,3 @@
-# !/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# @Time : 2022/6/30 9:09
-# @Author : Perla
-# @Email : 13896934450@163.com
-# @File : world_cloud.py
-# @Software: PyCharm
-
-import pandas as pd
 import jieba
 import collections
 import re
@@ -46,19 +37,20 @@ for word in seg_list_exact:
 # 筛选后统计
 word_counts = collections.Counter(result_list)
 # 获取前100最高频的词
-word_counts_top100 = word_counts.most_common(200)
+word_counts_top300 = word_counts.most_common(300)
 # print(word_counts_top100)
-test_mask = np.array(Image.open("R-C.jpg"))
+test_mask = np.array(Image.open("R.png"))
+# print(word_counts_top300)
 
 # 绘制词云
 my_cloud = WordCloud(
     background_color='white',  # 设置背景颜色  默认是black
-    width=900, height=600,
-    max_words=200,  # 词云显示的最大词语数量
+    # width=1800, height=1200,
+    max_words=300,  # 词云显示的最大词语数量
     font_path='simhei.ttf',  # 设置字体  显示中文
-    max_font_size=99,  # 设置字体最大值
-    min_font_size=16,  # 设置子图最小值
-    random_state=10,  # 设置随机生成状态，即多少种配色方案
+    # max_font_size=99,  # 设置字体最大值
+    # min_font_size=16,  # 设置子图最小值
+    # random_state=10,  # 设置随机生成状态，即多少种配色方案
     mask=test_mask
 ).generate_from_frequencies(word_counts)
 
